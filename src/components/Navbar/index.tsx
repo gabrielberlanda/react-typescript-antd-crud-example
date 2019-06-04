@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
-import { NavRoute } from '../Routes';
+import { NavRoute } from '../../Routes';
 
 interface Props extends RouteComponentProps{
   navRoutes: NavRoute[],
@@ -22,7 +22,6 @@ const Navbar = withRouter((props: Props) => {
   }
 
   function renderNavLinks() {
-
     return (props.navRoutes || []).map((navRoute: NavRoute, index: number) => {
       return (
         <Menu.Item key={navRoute.key} onClick={menuClickHandler}>

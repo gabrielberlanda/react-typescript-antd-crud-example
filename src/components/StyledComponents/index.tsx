@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Layout } from 'antd';
+import { Layout, Button } from 'antd';
 import { blue } from '@ant-design/colors';
 
 const { Header, Content } = Layout;
@@ -24,4 +24,8 @@ export const AppContent = styled.div`
   background: #FFF;
   padding: 24px;
   min-height: 280px;
+`
+
+export const FullWidthButton = styled(Button)`
+  width: 100% !important;
 `
