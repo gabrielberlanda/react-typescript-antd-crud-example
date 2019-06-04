@@ -10,9 +10,9 @@ export const AppContainer = styled(Layout)`
 `
 
 export const AppHeader = styled(Header)`
-  line-height: 64px;
   background: ${blue.primary};
 `
+
 export const AppTitle = styled.h1`
   color: #FFF;
   font-weight: bold;
