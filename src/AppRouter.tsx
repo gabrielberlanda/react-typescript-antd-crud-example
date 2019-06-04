@@ -31,6 +31,7 @@ const AppRouter: React.FC = () => {
           <AppContent>
             <Route path="/" exact component={() => <h1>Home</h1>}/>
             <Route path="/users" exact component={ UserListContainer }/>
+            <Route path="/users/form" exact component={ () => <h1>User form</h1> }/>
             <Route path="/about" exact component={() => <h1>About</h1>}/>
           </AppContent>
         </AppContentWrapper>

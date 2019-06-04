@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
-import { NavRoute } from '../../Routes';
+import { NavRoute } from '../../AppRouter';
 
 interface Props extends RouteComponentProps{
   navRoutes: NavRoute[],
@@ -13,8 +13,8 @@ const Navbar = withRouter((props: Props) => {
 
   useEffect(() => {
     let activatedNav = props.navRoutes.find(n => n.path === props.location.pathname);
-
     if(activatedNav) setSelectedRoute(activatedNav.key);
+
   }, [props.location, props.navRoutes]);
 
   function menuClickHandler(ev: any) {

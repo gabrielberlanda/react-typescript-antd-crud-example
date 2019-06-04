@@ -1,6 +1,7 @@
 import React from 'react'
-import { Typography } from 'antd';
+import { Typography, Button, Row, Col } from 'antd';
 import ExportableTable from '../../components/ExportableTable';
+import { Link } from 'react-router-dom';
 
 const UserListContainer: React.FC = () => {
   const dataSource = [
@@ -38,8 +39,16 @@ const UserListContainer: React.FC = () => {
 
   return (
     <div>
-      <Typography.Title level={3}>User's List</Typography.Title>
-      <ExportableTable columns={columns} dataSource={dataSource}/>
+      <Row type="flex" justify="space-between" align="middle">
+        <Col span={22}><Typography.Title level={3}>User's List</Typography.Title></Col>
+        <Col>
+          <Button type="primary"><Link to="/users/form">New User</Link></Button>
+        </Col>
+      </Row>
+
+      <div style={{ marginTop: 20 }}>
+        <ExportableTable columns={columns} dataSource={dataSource}/>
+      </div>
     </div>
   )
 };
