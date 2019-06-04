@@ -1,9 +1,12 @@
 import React from 'react';
+import { Button } from 'antd';
 import './App.css';
 
 const App: React.FC = () => {
   return (
-    <h1>Hello world</h1>
+    <div className="App">
+      <Button type="primary">Antd works!</Button>
+    </div>
   );
 }
 
