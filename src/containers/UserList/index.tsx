@@ -10,21 +10,22 @@ const UserListContainer: React.FC = () => {
 
   const [users, setUsers] = useState<ApplicationUser[]>([]);
   const [loading, setLoading] = useState(false);
+  const [filter, setFilter] = useState('');
 
   //Init function
   useEffect(() => {
     loadUsers();
-  }, []);
+  }, [filter]);
 
   async function loadUsers() {
     setLoading(true);
     
-    const usersLoaded: ApplicationUser[] = await getUsers();
+    const usersLoaded: ApplicationUser[] = await getUsers(filter);
 
     setUsers(usersLoaded);
     setLoading(false);
   }
-  
+
   function editUserHandler(user: ApplicationUser) {
     console.log('Edit user', user);
   }
@@ -33,6 +34,7 @@ const UserListContainer: React.FC = () => {
     setUsers(users.filter(u => u.id !== user.id));
     message.success(`User ${user.name} deleted successfully!`);
   }
+
 
   return (
     <div>
@@ -46,6 +48,8 @@ const UserListContainer: React.FC = () => {
       <div style={{ marginTop: 20 }}>
         <UserListTable 
           users={users}
+          filter={filter}
+          onChangeFilter={setFilter}
           onEdit={editUserHandler}
           onRemove={removeUserHandler}
           loading={loading}

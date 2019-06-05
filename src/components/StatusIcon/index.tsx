@@ -9,8 +9,7 @@ interface Props extends IconProps {
 const StatusIcon: React.SFC<Props> = (props: Props) => {
     
     const { isActived, ...iconProps } = props;
-
-
+    
     const statusProps: IconProps = {
         theme: 'twoTone',
         type: isActived ? 'check-circle' : 'close-circle',

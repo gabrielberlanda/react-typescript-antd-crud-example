@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ApplicationUser } from '../../models/ApplicationUser';
 import { ColumnProps } from 'antd/lib/table';
 import StatusIcon from '../../components/StatusIcon';
-import { Button, Divider, Popconfirm } from 'antd';
+import { Button, Divider, Popconfirm, Input } from 'antd';
 import ExportableTable from '../../components/ExportableTable';
 
 interface Props {
     users: ApplicationUser[],
     loading: boolean,
+    filter: string,
+    onChangeFilter: (filter: string) => void,
     onRemove: (user: ApplicationUser) => void,
     onEdit: (user: ApplicationUser) => void
 }
 
 const UserListTable: React.SFC<Props> = (props: Props) => {
-    const { users, loading, onRemove, onEdit } = props;
+    const { users, loading, onRemove, onEdit, onChangeFilter } = props;
 
     const userTableColumns: ColumnProps<ApplicationUser>[] = [
         { title: 'Name', dataIndex: 'name', key: 'name' },
@@ -29,28 +31,41 @@ const UserListTable: React.SFC<Props> = (props: Props) => {
         {
           title: 'Actions',
           key: 'actions',
-          render: renderActionRow
+          render: renderActionRow,
         }
     ];
 
     function renderActionRow(text: string, user: ApplicationUser) {
-        return (
-          <>
-            <Button type="link" onClick={() => onEdit(user)}> Edit </Button>
-            <Divider type="vertical" />
-            <Popconfirm
-              title={`Do you really want to delete ${user.name}?`}
-              onConfirm={() => onRemove(user)}
-              okText="Delete"
-              cancelText="Cancel">
-              <Button type="link"> Delete </Button>
-            </Popconfirm>
-          </>
-        )
-      }
+      return (
+        <>
+          <Button type="link" onClick={() => onEdit(user)}> Edit </Button>
+          <Divider type="vertical" />
+          <Popconfirm
+            title={`Do you really want to delete ${user.name}?`}
+            onConfirm={() => onRemove(user)}
+            okText="Delete"
+            cancelText="Cancel">
+            <Button type="link"> Delete </Button>
+          </Popconfirm>
+        </>
+      )
+    }
+
+    
 
     return (
-        <ExportableTable columns={userTableColumns} rowKey="id" loading={loading} dataSource={users}/>
+      <ExportableTable 
+        filterContainer={
+          <Input.Search 
+            placeholder="Filter by name"
+            onSearch={value => onChangeFilter(value)}
+            enterButton 
+          />
+        }
+        columns={userTableColumns} 
+        rowKey="id" 
+        loading={loading} 
+        dataSource={users}/>
     )
 }
 

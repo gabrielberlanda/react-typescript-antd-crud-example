@@ -3,6 +3,7 @@ import { Table, Row, Col } from 'antd';
 import { TableProps } from 'antd/lib/table';
 import { ExportableFileType } from './ExportableFileType';
 import ExportableButton from './ExportableButton';
+import { CSVDownload } from 'react-csv';
 
 interface Props<T> extends TableProps<T>{
   isExportable?: boolean;
@@ -40,7 +41,10 @@ const ExportableTable: React.SFC<Props<any>> = (props) => {
       
       {/* Table loading */}
       <div style={{ marginTop: 20 }}>
-        <Table {...tableProps}/>
+        <Table 
+          size="small"
+          bordered={true}
+          {...tableProps} />
       </div>
 
     </>
