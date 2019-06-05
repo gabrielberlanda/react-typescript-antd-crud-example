@@ -2,31 +2,36 @@ import React, { useState } from 'react'
 import { Table, Row, Col } from 'antd';
 import { TableProps } from 'antd/lib/table';
 import { ExportableFileType } from './ExportableFileType';
+import { ExportToCsv } from 'export-to-csv';
 import ExportableButton from './ExportableButton';
-import { CSVDownload } from 'react-csv';
+import { exportData } from './ExportData';
 
 interface Props<T> extends TableProps<T>{
-  isExportable?: boolean;
+  listName?: string;
   filterContainer?: any; //Optional row for filter
 };
 
 const ExportableTable: React.SFC<Props<any>> = (props) => {
 
-  const { title, filterContainer, isExportable, ...tableProps} = props;
+  const { listName, filterContainer, ...tableProps} = props;
 
   const [exportLoading, setExportLoading] = useState(false);
 
   async function exportDataHandler(type: ExportableFileType) {
+    
     setExportLoading(true);
 
+    const { columns, dataSource } = props; 
+
+    exportData(listName, type, dataSource || [], columns || [] );
+    
     setTimeout(() => {
       setExportLoading(false);
-    }, 2000);
+    }, 500);
   }
 
   return (
     <>
-
       <Row type="flex">
         <Col span={18}> { filterContainer } </Col>
         <Col style={{ flex: 1 }}/>

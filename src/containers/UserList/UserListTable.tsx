@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { ApplicationUser } from '../../models/ApplicationUser';
 import { ColumnProps } from 'antd/lib/table';
 import StatusIcon from '../../components/StatusIcon';
@@ -62,6 +62,7 @@ const UserListTable: React.SFC<Props> = (props: Props) => {
             enterButton 
           />
         }
+        listName="User_List"
         columns={userTableColumns} 
         rowKey="id" 
         loading={loading} 
