@@ -17,6 +17,7 @@ const Navbar = withRouter((props: Props) => {
 
   }, [props.location, props.navRoutes]);
 
+
   function menuClickHandler(ev: any) {
     setSelectedRoute(ev.key);
   }

@@ -21,11 +21,11 @@ const ExportableTable: React.SFC<Props<any>> = (props) => {
     setTimeout(() => {
       setExportLoading(false);
     }, 2000);
-
   }
 
   return (
     <>
+
       <Row type="flex">
         <Col span={18}> { filterContainer } </Col>
         <Col style={{ flex: 1 }}/>

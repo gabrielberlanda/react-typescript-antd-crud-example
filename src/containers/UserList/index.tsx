@@ -1,41 +1,38 @@
-import React from 'react'
-import { Typography, Button, Row, Col } from 'antd';
-import ExportableTable from '../../components/ExportableTable';
+import React, { useState, useEffect } from 'react'
+import { Typography, Button, Row, Col, message } from 'antd';
 import { Link } from 'react-router-dom';
+import { ApplicationUser } from '../../models/ApplicationUser';
+import { getUsers } from '../../services/ApplicationUserService';
+import UserListTable from './UserListTable';
+
 
 const UserListContainer: React.FC = () => {
-  const dataSource = [
-    {
-      key: '1',
-      name: 'Mike',
-      age: 32,
-      address: '10 Downing Street',
-    },
-    {
-      key: '2',
-      name: 'John',
-      age: 42,
-      address: '10 Downing Street',
-    },
-  ];
+
+  const [users, setUsers] = useState<ApplicationUser[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  //Init function
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  async function loadUsers() {
+    setLoading(true);
+    
+    const usersLoaded: ApplicationUser[] = await getUsers();
+
+    setUsers(usersLoaded);
+    setLoading(false);
+  }
   
-  const columns = [
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: 'Age',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
+  function editUserHandler(user: ApplicationUser) {
+    console.log('Edit user', user);
+  }
+
+  function removeUserHandler(user: ApplicationUser) {
+    setUsers(users.filter(u => u.id !== user.id));
+    message.success(`User ${user.name} deleted successfully!`);
+  }
 
   return (
     <div>
@@ -47,7 +44,12 @@ const UserListContainer: React.FC = () => {
       </Row>
 
       <div style={{ marginTop: 20 }}>
-        <ExportableTable columns={columns} dataSource={dataSource}/>
+        <UserListTable 
+          users={users}
+          onEdit={editUserHandler}
+          onRemove={removeUserHandler}
+          loading={loading}
+        />
       </div>
     </div>
   )
