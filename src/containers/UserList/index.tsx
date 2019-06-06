@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { Typography, Button, Row, Col, message } from 'antd';
+import { Button, Col, message, PageHeader } from 'antd';
 import { Link } from 'react-router-dom';
 import { ApplicationUser } from '../../models/ApplicationUser';
 import { getUsers } from '../../services/ApplicationUserService';
 import UserListTable from './UserListTable';
+import { Card, SubHeader } from '../../components/StyledComponents';
 
 
 const UserListContainer: React.FC = () => {
@@ -14,17 +15,20 @@ const UserListContainer: React.FC = () => {
 
   //Init function
   useEffect(() => {
+
+    async function loadUsers() {
+      setLoading(true);
+      
+      const usersLoaded: ApplicationUser[] = await getUsers(filter);
+  
+      setUsers(usersLoaded);
+      setLoading(false);
+    }
+    
     loadUsers();
   }, [filter]);
 
-  async function loadUsers() {
-    setLoading(true);
-    
-    const usersLoaded: ApplicationUser[] = await getUsers(filter);
 
-    setUsers(usersLoaded);
-    setLoading(false);
-  }
 
   function editUserHandler(user: ApplicationUser) {
     console.log('Edit user', user);
@@ -38,14 +42,13 @@ const UserListContainer: React.FC = () => {
 
   return (
     <div>
-      <Row type="flex" justify="space-between" align="middle">
-        <Col span={22}><Typography.Title level={3}>User's List</Typography.Title></Col>
-        <Col>
-          <Button type="primary"><Link to="/users/form">New User</Link></Button>
-        </Col>
-      </Row>
 
-      <div style={{ marginTop: 20 }}>
+      <SubHeader type="flex" justify="space-between" align="middle">
+        <PageHeader title="User's List"></PageHeader>
+        <Col> <Button type="primary"><Link to="/users/create">New User</Link></Button> </Col>
+      </SubHeader>
+      
+      <Card style={{ marginTop: 20 }} bordered={false}>
         <UserListTable 
           users={users}
           filter={filter}
@@ -54,7 +57,8 @@ const UserListContainer: React.FC = () => {
           onRemove={removeUserHandler}
           loading={loading}
         />
-      </div>
+      </Card>
+
     </div>
   )
 };

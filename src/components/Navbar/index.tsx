@@ -37,7 +37,7 @@ const Navbar = withRouter((props: Props) => {
   }
 
   return(
-    <Menu mode="horizontal" selectedKeys={ [selectedRoute] }>
+    <Menu mode="horizontal" style={{ lineHeight: '64px' }} theme="dark" selectedKeys={ [selectedRoute] }>
       {renderNavLinks()}
     </Menu>
   )

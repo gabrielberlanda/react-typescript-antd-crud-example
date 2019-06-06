@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Table, Row, Col } from 'antd';
 import { TableProps } from 'antd/lib/table';
 import { ExportableFileType } from './ExportableFileType';
-import { ExportToCsv } from 'export-to-csv';
 import ExportableButton from './ExportableButton';
 import { exportData } from './ExportData';
 

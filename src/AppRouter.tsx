@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import UserListContainer from './containers/UserList';
 import { Constants } from './utils/Constants';
+import UserFormContainer from './containers/UserForm';
 
 export interface NavRoute {
   path: string;
@@ -22,16 +23,16 @@ const AppRouter: React.FC = () => {
     <BrowserRouter>
       <AppContainer>
         <AppHeader>
-          <AppTitle>{ Constants.title }</AppTitle>
-        </AppHeader>
-        <AppHeader>
+          <AppTitle style={{ marginRight: 20 }}>{ Constants.title }</AppTitle>
+          <span style={{flex: 1}}></span>
           <Navbar navRoutes={ navRoutes }/>
         </AppHeader>
         <AppContentWrapper>
           <AppContent>
             <Route path="/" exact component={() => <h1>Home</h1>}/>
             <Route path="/users" exact component={ UserListContainer }/>
-            <Route path="/users/form" exact component={ () => <h1>User form</h1> }/>
+            <Route path="/users/create" exact component={ UserFormContainer }/>
+            <Route path="/users/edit/:id" exact component={ UserFormContainer }/>
             <Route path="/about" exact component={() => <h1>About</h1>}/>
           </AppContent>
         </AppContentWrapper>

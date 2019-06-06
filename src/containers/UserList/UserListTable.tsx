@@ -4,6 +4,7 @@ import { ColumnProps } from 'antd/lib/table';
 import StatusIcon from '../../components/StatusIcon';
 import { Button, Divider, Popconfirm, Input } from 'antd';
 import ExportableTable from '../../components/ExportableTable';
+import { Link } from 'react-router-dom';
 
 interface Props {
     users: ApplicationUser[],
@@ -25,20 +26,23 @@ const UserListTable: React.SFC<Props> = (props: Props) => {
           dataIndex: 'disabled', 
           key: 'disabled', 
           render: (disabled) => {
-              return <StatusIcon isActived={disabled == null}/>
+            return <StatusIcon isActived={disabled == null}/>
           }
         },
         {
           title: 'Actions',
           key: 'actions',
           render: renderActionRow,
+          width: '15%'
         }
     ];
 
     function renderActionRow(text: string, user: ApplicationUser) {
       return (
         <>
-          <Button type="link" onClick={() => onEdit(user)}> Edit </Button>
+          <Link to={`users/edit/${user.id}`}>
+            <Button type="link" onClick={() => onEdit(user)}> Edit </Button>
+          </Link>
           <Divider type="vertical" />
           <Popconfirm
             title={`Do you really want to delete ${user.name}?`}
