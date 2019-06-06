@@ -1,8 +1,9 @@
 import React from 'react'
-import { Card } from 'antd';
+
+import { Card } from './../../components/StyledComponents';
 
 const UserFormGroups: React.FC = () => {
-    return <Card>
+    return <Card bordered={false}>
         <div>Groups Form</div>
     </Card>
 }
