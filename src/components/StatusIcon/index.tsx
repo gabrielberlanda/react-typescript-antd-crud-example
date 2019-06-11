@@ -3,7 +3,7 @@ import Icon, { IconProps } from 'antd/lib/icon';
 import { green, red } from '@ant-design/colors';
 
 interface Props extends IconProps {
-    isActived: boolean
+    isActived?: boolean
 }
 
 const StatusIcon: React.SFC<Props> = (props: Props) => {

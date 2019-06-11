@@ -12,6 +12,7 @@ export interface ApplicationUserContact {
 }
 
 export interface ApplicationGroup {
+    id?: number,
     name?: string;
     description?: string;
 }

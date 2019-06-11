@@ -1,13 +1,15 @@
 import { ApplicationUser, ContactType, ApplicationGroup } from "../models/ApplicationUser";
 
-const AdministradorGroup: ApplicationGroup = { name: 'Grupo Administradores' };
-const OperariosGroup: ApplicationGroup = { name: 'Grupo Operarios' };
-const GestoresGroup: ApplicationGroup = { name: 'Grupo Gestores' };
+const AdministradorGroup: ApplicationGroup = { id: 1, name: 'Grupo Administradores' };
+const OperariosGroup: ApplicationGroup = { id: 2, name: 'Grupo Operarios' };
+const GestoresGroup: ApplicationGroup = { id: 3, name: 'Grupo Gestores' };
+const RandomGroup: ApplicationGroup = { id: 4, name: 'Grupo Aleatorio' };
 
 export const ApplicationGroupsMockData: ApplicationGroup[] = [
     AdministradorGroup, 
     OperariosGroup,
-    GestoresGroup
+    GestoresGroup,
+    RandomGroup
 ];
 
 export const ApplicationUsersMockData: ApplicationUser[] = [

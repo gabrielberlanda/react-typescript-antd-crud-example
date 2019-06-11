@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import "antd/dist/antd.css";
 import AppRouter from './AppRouter';
 import { LocaleProvider } from 'antd';
 import pt_BR from 'antd/lib/locale-provider/pt_BR';

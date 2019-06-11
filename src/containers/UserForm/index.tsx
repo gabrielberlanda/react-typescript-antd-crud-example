@@ -4,10 +4,14 @@ import { RouteComponentProps } from 'react-router';
 import { PageHeader, message, Tabs } from 'antd';
 import { findUserById } from '../../services/ApplicationUserService';
 import {  SubHeader } from '../../components/StyledComponents';
-import UserFormContacts from './UserFormContacts';
-import UserFormGeneral from './UserFormGeneral';
-import UserFormGroups from './UserFormGroups';
+import UserFormContacts from './UserFormContacts/UserFormContacts';
+import UserFormGeneral from './UserFormGeneral/UserFormGeneral';
+import UserFormGroups from './UserFormGroups/UserFormGroups';
 
+export interface UserFormTabProps {
+    user: ApplicationUser,
+    setUser: React.Dispatch<React.SetStateAction<ApplicationUser>>
+}
 
 const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponentProps) => {
     
@@ -44,13 +48,13 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
 
                 <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
                     <Tabs.TabPane tab="General" key="1">
-                        <UserFormGeneral></UserFormGeneral>
+                        <UserFormGeneral user={user} setUser={setUser}></UserFormGeneral>
                     </Tabs.TabPane>
                     <Tabs.TabPane tab="Contacts" key="2">
-                        <UserFormContacts/>
+                        <UserFormContacts user={user} setUser={setUser}/>
                     </Tabs.TabPane>
-                    <Tabs.TabPane tab="Groups" key="3">
-                        <UserFormGroups/>
+                    <Tabs.TabPane tab="Groups" key="3" >
+                        <UserFormGroups user={user} setUser={setUser}/>
                     </Tabs.TabPane>
                 </Tabs>
             </div>
