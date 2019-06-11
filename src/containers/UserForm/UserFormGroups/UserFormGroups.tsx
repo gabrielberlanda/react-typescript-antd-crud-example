@@ -4,7 +4,7 @@ import { Card } from './../../../components/StyledComponents';
 import { UserFormTabProps } from '..';
 import { ApplicationGroupsMockData } from '../../../mocks/ApplicationUserMockData';
 import { TransferItem } from 'antd/lib/transfer';
-import { Transfer } from 'antd';
+import { Transfer } from '@jbuschke/formik-antd';
 
 
 const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) => {
@@ -21,9 +21,6 @@ const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =>
         return transferItem;
     });
 
-    const targetKeys : string[] = (props.user.userGroups || []).map(g => String(g.id));
-    const selectedKeys: string[] = ApplicationGroupsMockData.filter(g => targetKeys.indexOf(String(g.id)) == -1).map(g => String(g.id));
-
 
     function handleChange(targetKeys: string[], direction: string, moveKeys: any) {
         if(direction == 'right') {
@@ -38,13 +35,12 @@ const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =>
     return (
         <Card bordered={false}>
             <Transfer
+                name="userGroupsKeys"
                 showSearch
                 titles={['Groups that the user not belongs to', 'Groups that the user belongs to']}                
-                targetKeys={targetKeys}
                 listStyle={{ width: '50%' }}
                 dataSource={dataSource}
                 render={item => item.title}
-                onChange={handleChange}
             />
 
         </Card>
