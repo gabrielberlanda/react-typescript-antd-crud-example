@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { ApplicationUser } from '../../models/ApplicationUser';
+import React, { useState, useEffect, useRef } from 'react'
+import { ApplicationUser, ContactType } from '../../models/ApplicationUser';
 import { RouteComponentProps } from 'react-router';
 import { PageHeader, message, Tabs } from 'antd';
 import { findUserById } from '../../services/ApplicationUserService';
-import {  SubHeader } from '../../components/StyledComponents';
+import {  SubHeader, FullWidthButton } from '../../components/StyledComponents';
 import { Formik, FormikActions, FormikProps } from 'formik';
 import { UserFormSchemaValues, UserFormSchema } from './UserFormSchema';
 import { Form } from '@jbuschke/formik-antd';
@@ -33,6 +33,8 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
     
     const [user, setUser] = useState<ApplicationUser>({});
     const [initialized, setInitialized] = useState<boolean>(false);
+    const formikEl = useRef<Formik>(null);
+    
 
     useEffect(() => {
         const { id } = (props.match.params as any);
@@ -48,7 +50,6 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
     function findById(id: number) {
         findUserById(id)
             .then((user: ApplicationUser) => {
-                console.log('User', user);
                 setUser(user);
                 setInitialized(true);
             })
@@ -61,12 +62,23 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
 
     function submitHandler(values: UserFormSchemaValues, actions: FormikActions<UserFormSchemaValues>) {
         console.log({values, actions});
+        actions.validateForm(values).then((errors) => {
+            console.log('Errors', errors);
+            if(Object.keys(errors).length > 0) {
+                message.error('Invalid form');
+            } else {
+                message.success('User saved successfully!')
+            }
+        })
     }
 
     function getInitialValues(): UserFormSchemaValues {
         return {
             ...user,
-            userGroupsKeys: (user.userGroups || []).map(g => String(g.id))
+            userGroupsKeys: (user.userGroups || []).map(g => String(g.id)),
+            userEmails: (user.userContacts || []).filter(c => c.type === ContactType.EMAIL),
+            userSMSs: (user.userContacts || []).filter(c => c.type === ContactType.SMS),
+            structure: (user.structure || {}).id 
         }
     }
 
@@ -74,10 +86,23 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
         return <DefaultTabBar {...props} style={{ zIndex: 1, background: '#fff' }}/>
     }
 
+    function saveHandler(ev: any) {
+        const formik = (formikEl.current as Formik);
+        
+        formik.executeSubmit();
+    }
+
     function renderSubHeader() {
         return (
             <SubHeader type="flex" justify="space-between" align="middle">
-                <PageHeader onBack={goBack} title="User Form"></PageHeader>
+                <PageHeader 
+                    style={{ flex: 1}}
+                    onBack={goBack} 
+                    title="User Form"
+                    extra={[
+                        <FullWidthButton type="primary" key="save" onClick={saveHandler}>Save</FullWidthButton>
+                    ]}
+                />
             </SubHeader>
         )
     }
@@ -86,11 +111,11 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
         if(!initialized) return null;
         return(
             <Formik
+                ref={formikEl}
                 initialValues={getInitialValues()}
                 validationSchema={UserFormSchema}
                 onSubmit={submitHandler}
                 render={(formikBag: FormikProps<UserFormSchemaValues>) => {
-                    console.log('Formik bag', formikBag);
                     return (
                         <Form {...formItemLayout} style={{ marginTop: 10 }}>
                             <Tabs defaultActiveKey="1" renderTabBar={renderTabBar}>
@@ -105,7 +130,6 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
                                 </Tabs.TabPane>
                             </Tabs>
                         </Form>
-        
                     )
                 }}
             />

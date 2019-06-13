@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import UserListContainer from './containers/UserList';
 import { Constants } from './utils/Constants';
 import UserFormContainer from './containers/UserForm';
+import HomeContainer from './containers/Home';
 
 export interface NavRoute {
   path: string;
@@ -29,7 +30,7 @@ const AppRouter: React.FC = () => {
         </AppHeader>
         <AppContentWrapper>
           <AppContent>
-            <Route path="/" exact component={() => <h1>Home</h1>}/>
+            <Route path="/" exact component={ HomeContainer } />
             <Route path="/users" exact component={ UserListContainer }/>
             <Route path="/users/create" exact component={ UserFormContainer }/>
             <Route path="/users/edit/:id" exact component={ UserFormContainer }/>

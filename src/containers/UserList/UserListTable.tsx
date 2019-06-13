@@ -41,7 +41,7 @@ const UserListTable: React.SFC<Props> = (props: Props) => {
       return (
         <>
           <Link to={`users/edit/${user.id}`}>
-            <Button type="link" onClick={() => onEdit(user)}> Edit </Button>
+            <Button type="link" onClick={() => onEdit(user)}> edit </Button>
           </Link>
           <Divider type="vertical" />
           <Popconfirm
@@ -49,13 +49,11 @@ const UserListTable: React.SFC<Props> = (props: Props) => {
             onConfirm={() => onRemove(user)}
             okText="Delete"
             cancelText="Cancel">
-            <Button type="link"> Delete </Button>
+            <Button type="link"> delete </Button>
           </Popconfirm>
         </>
       )
     }
-
-    
 
     return (
       <ExportableTable 

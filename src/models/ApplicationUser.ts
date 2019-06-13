@@ -5,6 +5,12 @@ export enum ContactType {
     WHATS_APP = 4
 }
 
+export interface Structure {
+    id?: number;
+    name?: string;
+    children?: Structure[]
+}
+
 export interface ApplicationUserContact {
     value?: string;
     type?: ContactType,
@@ -24,6 +30,7 @@ export interface ApplicationUser {
     birthDate?: Date;
     disabled?: Date;
     password?: string;
+    structure?: Structure;
     userGroups?: ApplicationGroup[];
     userContacts?: ApplicationUserContact[];
 }

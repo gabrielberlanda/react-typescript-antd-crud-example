@@ -1,32 +1,39 @@
 import React from 'react'
-import { Form, Input, DatePicker } from "@jbuschke/formik-antd";
+import { Input, DatePicker, FormItem, TreeSelect } from "@jbuschke/formik-antd";
 import { Card } from '../../../components/StyledComponents';
 import { UserFormTabProps } from '..';
+import { getStructureTreeMockData } from '../../../mocks/ApplicationUserMockData';
 
-const FormItem = Form.Item;
 
 const UserFormGeneral: React.SFC<UserFormTabProps> = (props: UserFormTabProps) => {
+
+    const structureTreeData = getStructureTreeMockData();
 
     return (
         <Card bordered={false}>
 
-            <FormItem name="name" label="Name">
+            <FormItem name="name" label="Name" required={true}>
                 <Input name="name"/>
             </FormItem>
 
-            <FormItem name="userName" label="Username">
+            <FormItem name="userName" label="Username" required={true}>
                 <Input name="userName"/>
             </FormItem>
 
-            <FormItem name="birthDate" label="Birth date">
+            <FormItem name="birthDate" label="Birth date" required={true}>
                 <DatePicker format="DD/MM/YYYY" name="birthDate"/>
             </FormItem>
 
-            <FormItem name="password" label="Password">
+            <FormItem name="structure" label="Structure" required={true}>
+                <TreeSelect name="structure" treeData={structureTreeData}>
+                </TreeSelect>
+            </FormItem>
+
+            <FormItem name="password" label="Password" required={true}>
                 <Input name="password" type="password"/>
             </FormItem>
 
-            <FormItem name="confirmPassword" label="Confirm password">
+            <FormItem name="confirmPassword" label="Confirm password" required={true}>
                 <Input name="confirmPassword" type="password"/>
             </FormItem>
    
