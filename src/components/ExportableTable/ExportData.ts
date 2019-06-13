@@ -29,7 +29,6 @@ export const exportData = (listName: string = 'export_list', exportType: Exporta
             break;
     }
 
-
 }
 
 const exportToCSV = (filename: string, headers: string[], data: string[][]) => {

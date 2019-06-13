@@ -6,8 +6,6 @@ import { ApplicationGroupsMockData } from '../../../mocks/ApplicationUserMockDat
 import { TransferItem } from 'antd/lib/transfer';
 import { Transfer, FormItem } from '@jbuschke/formik-antd';
 
-
-
 const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) => {
 
     const dataSource: TransferItem[] = ApplicationGroupsMockData.map(group => {
@@ -19,8 +17,6 @@ const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =>
 
         return transferItem;
     });
-
-
 
     return (
         <Card bordered={false}>

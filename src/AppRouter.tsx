@@ -25,7 +25,7 @@ const AppRouter: React.FC = () => {
       <AppContainer>
         <AppHeader>
           <AppTitle style={{ marginRight: 20 }}>{ Constants.title }</AppTitle>
-          <span style={{flex: 1}}></span>
+          <div style={{ flex: 1 }}></div>
           <Navbar navRoutes={ navRoutes }/>
         </AppHeader>
         <AppContentWrapper>

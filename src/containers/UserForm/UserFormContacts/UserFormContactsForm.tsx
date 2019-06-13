@@ -41,15 +41,15 @@ const UserFormContactsForm: React.SFC<Props> = (props: Props) => {
         const fieldAllowNotification = `${formFieldName}.${index}.allowNotification`;
 
         return (
-            <List.Item actions={[ <Button type="link" onClick={remove}>delete</Button>]}>
+            <List.Item actions={[ <Button style={{marginTop: -20}} type="link" onClick={remove}>delete</Button>]}>
                 <Row style={{ flex: 1 }} type="flex" align="middle" justify="space-between">
                     <Col span={20}>
-                        <FormItem name={fieldValue} label="Value">
+                        <FormItem name={fieldValue} labelCol={{ span: 2 }} label="Value" required={true}>
                             <Input name={fieldValue}/>
                         </FormItem>
                     </Col>
                     <Col span={4}>
-                        <FormItem name={fieldAllowNotification}>
+                        <FormItem name={fieldAllowNotification} labelCol={{ span: 1 }}>
                             <Checkbox name={fieldAllowNotification}>Allow notifications</Checkbox>
                         </FormItem>
                     </Col>

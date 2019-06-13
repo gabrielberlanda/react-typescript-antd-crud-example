@@ -7,6 +7,8 @@ import { getStructureTreeMockData } from '../../../mocks/ApplicationUserMockData
 
 const UserFormGeneral: React.SFC<UserFormTabProps> = (props: UserFormTabProps) => {
 
+    const { user } = props;
+
     const structureTreeData = getStructureTreeMockData();
 
     return (
@@ -29,11 +31,11 @@ const UserFormGeneral: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =
                 </TreeSelect>
             </FormItem>
 
-            <FormItem name="password" label="Password" required={true}>
+            <FormItem name="password" label="Password" required={!user.id}>
                 <Input name="password" type="password"/>
             </FormItem>
 
-            <FormItem name="confirmPassword" label="Confirm password" required={true}>
+            <FormItem name="confirmPassword" label="Confirm password" required={!user.id}>
                 <Input name="confirmPassword" type="password"/>
             </FormItem>
    
