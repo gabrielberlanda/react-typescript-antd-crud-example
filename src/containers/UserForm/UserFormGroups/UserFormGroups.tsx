@@ -24,7 +24,7 @@ const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =>
                 <Transfer
                     name="userGroupsKeys"
                     titles={['Groups that the user not belongs to', 'Groups that the user belongs to']}                
-                    listStyle={{ width: '40%' }}
+                    listStyle={{ width: '45%', height: 500 }}
                     dataSource={dataSource}
                     render={item => item.title}
                 />

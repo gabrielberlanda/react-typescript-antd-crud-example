@@ -17,6 +17,9 @@ export const AppContainer = styled(Layout)`
 export const AppHeader = styled(Header)`
   ${headerGradient}
   display: flex;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 `
 
 export const SubHeader = styled(Row)`
@@ -44,6 +47,7 @@ export const AppTitle = styled.h1`
 `
 export const AppContentWrapper = styled(Content)`
   padding: 10px 50px;
+  margin-top: 64px;
 `
 export const AppContent = styled.div`
   padding: 24px;

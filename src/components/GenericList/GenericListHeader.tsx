@@ -9,7 +9,7 @@ import LinkButton from '../LinkButton';
 const GenericListHeader: React.SFC<GenericListProps<any>> = (props) => {
 
     const { title, baseRoute } = props; 
-    const addButtonText = props.addButtonText || 'Add';
+    const addButtonText = props.addButtonText || 'New';
 
     return (
         <SubHeader type="flex" justify="space-between" align="middle">
