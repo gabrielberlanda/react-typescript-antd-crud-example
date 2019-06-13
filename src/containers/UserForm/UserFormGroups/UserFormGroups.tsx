@@ -20,7 +20,7 @@ const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =>
 
     return (
         <Card bordered={false}>
-            <FormItem name="userGroupsKeys" label="User Groups" required={true}>
+            <FormItem hasFeedback name="userGroupsKeys" label="User Groups" required={true}>
                 <Transfer
                     name="userGroupsKeys"
                     titles={['Groups that the user not belongs to', 'Groups that the user belongs to']}                

@@ -1,7 +1,6 @@
 import React from 'react'
 import { SubHeader } from '../StyledComponents';
 import { PageHeader, Col, Button } from 'antd';
-import { Link } from 'react-router-dom';
 import { GenericListProps } from '.';
 import LinkButton from '../LinkButton';
 
@@ -14,7 +13,7 @@ const GenericListHeader: React.SFC<GenericListProps<any>> = (props) => {
     return (
         <SubHeader type="flex" justify="space-between" align="middle">
             <PageHeader title={title}></PageHeader>
-            <Col>
+            <Col style={{marginRight: 24 }}>
                 <LinkButton to={`${baseRoute}/create`} type="primary">
                     {addButtonText}
                 </LinkButton>

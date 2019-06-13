@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import { Layout, Button, Card as AntCard, Row } from 'antd';
 
-const { Header, Content } = Layout;
+const { Header } = Layout;
+const AntContent = Layout.Content;
 
 export const headerGradient = css`
   background: #141E30;  /* fallback for old browsers */
@@ -25,7 +26,7 @@ export const AppHeader = styled(Header)`
 export const SubHeader = styled(Row)`
   ${headerGradient}
   
-  padding-right: 24px;
+  /* padding-right: 24px; */
 
   .ant-page-header {
     background: transparent !important
@@ -45,14 +46,18 @@ export const AppTitle = styled.h1`
   color: #FFF;
   font-weight: bold;
 `
-export const AppContentWrapper = styled(Content)`
-  padding: 10px 50px;
+export const AppContentWrapper = styled(AntContent)`
+  /* padding: 10px 50px; */
   margin-top: 64px;
 `
 export const AppContent = styled.div`
-  padding: 24px;
   min-height: 280px;
 `
+
+export const Content = styled(AppContent)`
+  padding: 24px;
+`
+
 export const Card = styled(AntCard)`
   border-radius: 10px;
 `

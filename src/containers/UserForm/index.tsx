@@ -3,7 +3,7 @@ import { ApplicationUser, ContactType } from '../../models/ApplicationUser';
 import { RouteComponentProps } from 'react-router';
 import { PageHeader, message, Tabs } from 'antd';
 import { findUserById } from '../../services/ApplicationUserService';
-import {  SubHeader, FullWidthButton } from '../../components/StyledComponents';
+import {  SubHeader, FullWidthButton, Content } from '../../components/StyledComponents';
 import { Formik, FormikActions, FormikProps } from 'formik';
 import { UserFormSchemaValues, getUserFormSchema } from './UserFormSchema';
 import { Form } from '@jbuschke/formik-antd';
@@ -51,7 +51,10 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
     function submitHandler(values: UserFormSchemaValues, actions: FormikActions<UserFormSchemaValues>) {
         console.log({values, actions});
         actions.validateForm(values).then((errors) => {
-            if(Object.keys(errors).length > 0) {
+            
+            let errorKeys = Object.keys(errors);
+
+            if(errorKeys.length > 0) {
                 message.error('Invalid form');
             } else {
                 message.success('User saved successfully!')
@@ -116,18 +119,19 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
         <div>
             
             { renderSubHeader() }
-            
-            {
-                initialized ? (
-                    <Formik
-                        ref={formikEl}
-                        initialValues={getInitialValues()}
-                        validationSchema={getUserFormSchema(user.id != null)}
-                        onSubmit={submitHandler}
-                        render={renderFormContent}
-                    />
-                ) : (<div>Loading...</div>)
-            }
+            <Content>
+                {
+                    initialized ? (
+                        <Formik
+                            ref={formikEl}
+                            initialValues={getInitialValues()}
+                            validationSchema={getUserFormSchema(user.id != null)}
+                            onSubmit={submitHandler}
+                            render={renderFormContent}
+                        />
+                    ) : (<div>Loading...</div>)
+                }
+            </Content>
 
         </div>
     )

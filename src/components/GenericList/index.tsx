@@ -3,6 +3,7 @@ import React from 'react'
 import GenericListHeader from './GenericListHeader';
 import GenericListTable from './GenericListTable';
 import { ColumnProps } from 'antd/lib/table';
+import { Content } from '../StyledComponents';
 
 export interface GenericListProps<T> {
     title: string;
@@ -25,7 +26,9 @@ const GenericList: React.SFC<GenericListProps<any>> = (props) => {
             
             <GenericListHeader {...props}/>
 
-            <GenericListTable {...props}/>
+            <Content>
+                <GenericListTable {...props}/>
+            </Content>
 
         </div>
         

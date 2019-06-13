@@ -14,28 +14,28 @@ const UserFormGeneral: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =
     return (
         <Card bordered={false}>
 
-            <FormItem name="name" label="Name" required={true}>
+            <FormItem hasFeedback showValidateSuccess name="name" label="Name" required={true}>
                 <Input name="name"/>
             </FormItem>
 
-            <FormItem name="userName" label="Username" required={true}>
+            <FormItem hasFeedback showValidateSuccess name="userName" label="Username" required={true}>
                 <Input name="userName"/>
             </FormItem>
 
-            <FormItem name="birthDate" label="Birth date" required={true}>
+            <FormItem hasFeedback showValidateSuccess name="birthDate" label="Birth date" required={true}>
                 <DatePicker format="DD/MM/YYYY" name="birthDate"/>
             </FormItem>
 
-            <FormItem name="structure" label="Structure" required={true}>
+            <FormItem hasFeedback showValidateSuccess name="structure" label="Structure" required={true}>
                 <TreeSelect name="structure" treeData={structureTreeData}>
                 </TreeSelect>
             </FormItem>
 
-            <FormItem name="password" label="Password" required={!user.id}>
+            <FormItem hasFeedback showValidateSuccess name="password" label="Password" required={!user.id}>
                 <Input name="password" type="password"/>
             </FormItem>
 
-            <FormItem name="confirmPassword" label="Confirm password" required={!user.id}>
+            <FormItem hasFeedback showValidateSuccess name="confirmPassword" label="Confirm password" required={!user.id}>
                 <Input name="confirmPassword" type="password"/>
             </FormItem>
    

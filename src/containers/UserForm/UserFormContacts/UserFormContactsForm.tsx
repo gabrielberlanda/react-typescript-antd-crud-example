@@ -43,12 +43,12 @@ const UserFormContactsForm: React.SFC<Props> = (props: Props) => {
         return (
             <List.Item actions={[ <Button style={{marginTop: -20}} type="link" onClick={remove}>delete</Button>]}>
                 <Row style={{ flex: 1 }} type="flex" align="middle" justify="space-between">
-                    <Col span={20}>
-                        <FormItem name={fieldValue} labelCol={{ span: 2 }} label="Value" required={true}>
+                    <Col span={18}>
+                        <FormItem hasFeedback showValidateSuccess name={fieldValue} labelCol={{ span: 2 }} label="Value" required={true}>
                             <Input name={fieldValue}/>
                         </FormItem>
                     </Col>
-                    <Col span={4}>
+                    <Col span={6}>
                         <FormItem name={fieldAllowNotification} labelCol={{ span: 1 }}>
                             <Checkbox name={fieldAllowNotification}>Allow notifications</Checkbox>
                         </FormItem>
