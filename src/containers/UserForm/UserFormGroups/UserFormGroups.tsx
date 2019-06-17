@@ -4,7 +4,8 @@ import { Card } from './../../../components/StyledComponents';
 import { UserFormTabProps } from '..';
 import { ApplicationGroupsMockData } from '../../../mocks/ApplicationUserMockData';
 import { TransferItem } from 'antd/lib/transfer';
-import { Transfer, FormItem } from '@jbuschke/formik-antd';
+import { Transfer } from '@jbuschke/formik-antd';
+import FormItemFeedback from '../../../components/FormItemFeedback';
 
 const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) => {
 
@@ -20,7 +21,7 @@ const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =>
 
     return (
         <Card bordered={false}>
-            <FormItem hasFeedback name="userGroupsKeys" label="User Groups" required={true}>
+            <FormItemFeedback name="userGroupsKeys" label="User Groups" required={true}>
                 <Transfer
                     name="userGroupsKeys"
                     titles={['Groups that the user not belongs to', 'Groups that the user belongs to']}                
@@ -28,7 +29,7 @@ const UserFormGroups: React.SFC<UserFormTabProps> = (props: UserFormTabProps) =>
                     dataSource={dataSource}
                     render={item => item.title}
                 />
-            </FormItem>
+            </FormItemFeedback>
         </Card>
     )
 }

@@ -21,6 +21,7 @@ export const AppHeader = styled(Header)`
   position: fixed;
   z-index: 1;
   width: 100%;
+  padding: 0 24px !important;
 `
 
 export const SubHeader = styled(Row)`
@@ -52,6 +53,7 @@ export const AppContentWrapper = styled(AntContent)`
 `
 export const AppContent = styled.div`
   min-height: 280px;
+  background-color: #f0f2f5;
 `
 
 export const Content = styled(AppContent)`

@@ -19,6 +19,25 @@ const navRoutes: NavRoute[] = [
   { path: '/users', text: 'Users', icon: 'user', key: 'user' }
 ];
 
+
+const UserRoutes = function () {
+  return (
+    <>
+      <Route path="/users" exact component={ UserListContainer }/>
+      <Route path="/users/create" exact component={ UserFormContainer }/>
+      <Route path="/users/edit/:id" exact component={ UserFormContainer }/>
+    </>
+  )
+}
+
+const Routes = () => (
+  <>
+    <UserRoutes/>
+    <Route path="/" exact component={ HomeContainer } />
+    <Route path="/about" exact component={() => <h1>About</h1>}/>
+  </>
+)
+
 const AppRouter: React.FC = () => {
   return (
     <BrowserRouter>
@@ -29,11 +48,7 @@ const AppRouter: React.FC = () => {
         </AppHeader>
         <AppContentWrapper>
           <AppContent>
-            <Route path="/" exact component={ HomeContainer } />
-            <Route path="/users" exact component={ UserListContainer }/>
-            <Route path="/users/create" exact component={ UserFormContainer }/>
-            <Route path="/users/edit/:id" exact component={ UserFormContainer }/>
-            <Route path="/about" exact component={() => <h1>About</h1>}/>
+            <Routes/>
           </AppContent>
         </AppContentWrapper>
       </AppContainer>

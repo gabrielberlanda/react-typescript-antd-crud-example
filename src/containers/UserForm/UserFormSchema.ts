@@ -32,7 +32,6 @@ export const getUserFormSchema = (isUpdate: boolean) => {
         structure: Yup.number().required('Structure is required'),
         password,
         confirmPassword,
-
         userGroupsKeys: Yup.array().of(Yup.string()).required('User group is required'),
         userEmails: Yup.array().of(getContactSchema(ContactType.EMAIL)).required('Email is required'),
         userSMSs: Yup.array().of(getContactSchema(ContactType.SMS)).required('Sms is required'),

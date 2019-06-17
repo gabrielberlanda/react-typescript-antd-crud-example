@@ -1,43 +1,44 @@
 import React from 'react'
-import { Input, DatePicker, FormItem, TreeSelect } from "@jbuschke/formik-antd";
+import { Input, DatePicker, TreeSelect } from "@jbuschke/formik-antd";
 import { Card } from '../../../components/StyledComponents';
 import { UserFormTabProps } from '..';
 import { getStructureTreeMockData } from '../../../mocks/ApplicationUserMockData';
+import FormItemFeedback from '../../../components/FormItemFeedback';
 
 
 const UserFormGeneral: React.SFC<UserFormTabProps> = (props: UserFormTabProps) => {
 
-    const { user } = props;
+    const { user, formikBag: { values } } = props;
 
     const structureTreeData = getStructureTreeMockData();
 
     return (
         <Card bordered={false}>
 
-            <FormItem hasFeedback showValidateSuccess name="name" label="Name" required={true}>
+            <FormItemFeedback name="name" label="Name" required={true}>
                 <Input name="name"/>
-            </FormItem>
+            </FormItemFeedback>
 
-            <FormItem hasFeedback showValidateSuccess name="userName" label="Username" required={true}>
+            <FormItemFeedback name="userName" label="Username" required={true}>
                 <Input name="userName"/>
-            </FormItem>
+            </FormItemFeedback>
 
-            <FormItem hasFeedback showValidateSuccess name="birthDate" label="Birth date" required={true}>
+            <FormItemFeedback name="birthDate" label="Birth date" required={true}>
                 <DatePicker format="DD/MM/YYYY" name="birthDate"/>
-            </FormItem>
+            </FormItemFeedback>
 
-            <FormItem hasFeedback showValidateSuccess name="structure" label="Structure" required={true}>
+            <FormItemFeedback name="structure" label="Structure" required={true}>
                 <TreeSelect name="structure" treeData={structureTreeData}>
                 </TreeSelect>
-            </FormItem>
+            </FormItemFeedback>
 
-            <FormItem hasFeedback showValidateSuccess name="password" label="Password" required={!user.id}>
+            <FormItemFeedback name="password" label="Password" required={!user.id}>
                 <Input name="password" type="password"/>
-            </FormItem>
+            </FormItemFeedback>
 
-            <FormItem hasFeedback showValidateSuccess name="confirmPassword" label="Confirm password" required={!user.id}>
+            <FormItemFeedback name="confirmPassword" label="Confirm password" required={!user.id}>
                 <Input name="confirmPassword" type="password"/>
-            </FormItem>
+            </FormItemFeedback>
    
         </Card>
     )

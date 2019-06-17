@@ -45,10 +45,7 @@ const ExportableTable: React.SFC<Props<any>> = (props) => {
       
       {/* Table loading */}
       <div style={{ marginTop: 20 }}>
-        <Table 
-          size="small"
-          bordered={true}
-          {...tableProps} />
+        <Table {...tableProps} size="small" bordered={true}/>
       </div>
 
     </>

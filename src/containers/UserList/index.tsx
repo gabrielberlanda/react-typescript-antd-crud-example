@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { Button, message, Divider, Popconfirm, Input } from 'antd';
-import { Link } from 'react-router-dom';
 import { ApplicationUser } from '../../models/ApplicationUser';
 import { getUsers } from '../../services/ApplicationUserService';
 import GenericList from '../../components/GenericList';
@@ -64,7 +63,7 @@ const UserListContainer: React.FC = () => {
     return (
         <Input.Search 
           placeholder="Filter by name"
-          onSearch={setFilter}
+          onSearch={(value) => setFilter(value)}
           enterButton 
         />
     )

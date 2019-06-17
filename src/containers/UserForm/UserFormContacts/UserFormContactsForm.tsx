@@ -3,7 +3,8 @@ import { ApplicationUserContact, ContactType } from '../../../models/Application
 import { FieldArray } from 'formik';
 import { Row, Col, Divider, List, Button } from 'antd';
 import { FullWidthButton } from '../../../components/StyledComponents';
-import { FormItem, Input, Checkbox } from '@jbuschke/formik-antd';
+import { Input, Checkbox } from '@jbuschke/formik-antd';
+import FormItemFeedback from '../../../components/FormItemFeedback';
 
 interface Props {
     title: string;
@@ -37,21 +38,21 @@ const UserFormContactsForm: React.SFC<Props> = (props: Props) => {
 
     function renderContactRow(contact: ApplicationUserContact, index: number, remove: () => void) {
 
-        const fieldValue = `${formFieldName}.${index}.value`;
-        const fieldAllowNotification = `${formFieldName}.${index}.allowNotification`;
+        const fieldValue = `${formFieldName}[${index}].value`;
+        const fieldAllowNotification = `${formFieldName}[${index}].allowNotification`;
 
         return (
             <List.Item actions={[ <Button style={{marginTop: -20}} type="link" onClick={remove}>delete</Button>]}>
                 <Row style={{ flex: 1 }} type="flex" align="middle" justify="space-between">
                     <Col span={18}>
-                        <FormItem hasFeedback showValidateSuccess name={fieldValue} labelCol={{ span: 2 }} label="Value" required={true}>
+                        <FormItemFeedback name={fieldValue} labelCol={{ span: 2 }} label="Value" required={true}>
                             <Input name={fieldValue}/>
-                        </FormItem>
+                        </FormItemFeedback>
                     </Col>
                     <Col span={6}>
-                        <FormItem name={fieldAllowNotification} labelCol={{ span: 1 }}>
+                        <FormItemFeedback name={fieldAllowNotification} labelCol={{ span: 1 }}>
                             <Checkbox name={fieldAllowNotification}>Allow notifications</Checkbox>
-                        </FormItem>
+                        </FormItemFeedback>
                     </Col>
                 </Row>
             </List.Item>

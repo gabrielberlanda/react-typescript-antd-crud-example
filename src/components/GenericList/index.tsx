@@ -10,7 +10,6 @@ export interface GenericListProps<T> {
     baseRoute: string;
     entities: any[],
     tableDef: ColumnProps<T>[], 
-
     loading?: boolean;
     idField?: string;     
     filterComponent?: React.ReactNode;

@@ -6,7 +6,7 @@ import { findUserById } from '../../services/ApplicationUserService';
 import {  SubHeader, FullWidthButton, Content } from '../../components/StyledComponents';
 import { Formik, FormikActions, FormikProps } from 'formik';
 import { UserFormSchemaValues, getUserFormSchema } from './UserFormSchema';
-import { Form } from '@jbuschke/formik-antd';
+import { Form, SubmitButton } from '@jbuschke/formik-antd';
 import { Constants } from '../../utils/Constants';
 import UserFormContacts from './UserFormContacts/UserFormContacts';
 import UserFormGeneral from './UserFormGeneral/UserFormGeneral';
@@ -115,22 +115,21 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
         )
     }
 
+    if(!initialized) return <div>Loading...</div>
+    
     return (
         <div>
             
             { renderSubHeader() }
+            
             <Content>
-                {
-                    initialized ? (
-                        <Formik
-                            ref={formikEl}
-                            initialValues={getInitialValues()}
-                            validationSchema={getUserFormSchema(user.id != null)}
-                            onSubmit={submitHandler}
-                            render={renderFormContent}
-                        />
-                    ) : (<div>Loading...</div>)
-                }
+                <Formik
+                    ref={formikEl}
+                    initialValues={getInitialValues()}
+                    validationSchema={getUserFormSchema(user.id != null)}
+                    onSubmit={submitHandler}
+                    render={renderFormContent}
+                />
             </Content>
 
         </div>
