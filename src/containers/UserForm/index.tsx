@@ -6,7 +6,7 @@ import { findUserById } from '../../services/ApplicationUserService';
 import {  SubHeader, FullWidthButton, Content } from '../../components/StyledComponents';
 import { Formik, FormikActions, FormikProps } from 'formik';
 import { UserFormSchemaValues, getUserFormSchema } from './UserFormSchema';
-import { Form, SubmitButton } from '@jbuschke/formik-antd';
+import { Form } from '@jbuschke/formik-antd';
 import { Constants } from '../../utils/Constants';
 import UserFormContacts from './UserFormContacts/UserFormContacts';
 import UserFormGeneral from './UserFormGeneral/UserFormGeneral';
@@ -49,12 +49,16 @@ const UserFormContainer: React.SFC<RouteComponentProps> = (props: RouteComponent
     }
 
     function submitHandler(values: UserFormSchemaValues, actions: FormikActions<UserFormSchemaValues>) {
-        console.log({values, actions});
+        
         actions.validateForm(values).then((errors) => {
             
             let errorKeys = Object.keys(errors);
-
+            
             if(errorKeys.length > 0) {
+
+                let formik = formikEl.current as Formik;
+                Object.keys(formik.fields).forEach(k => formik.setFieldTouched(k, true));
+
                 message.error('Invalid form');
             } else {
                 message.success('User saved successfully!')

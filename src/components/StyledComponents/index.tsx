@@ -30,7 +30,7 @@ export const SubHeader = styled(Row)`
   /* padding-right: 24px; */
 
   .ant-page-header {
-    background: transparent !important
+    background: transparent !important;
   }
 
   .ant-page-header-title-view-title {

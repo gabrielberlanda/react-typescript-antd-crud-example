@@ -50,9 +50,7 @@ const UserFormContactsForm: React.SFC<Props> = (props: Props) => {
                         </FormItemFeedback>
                     </Col>
                     <Col span={6}>
-                        <FormItemFeedback name={fieldAllowNotification} labelCol={{ span: 1 }}>
-                            <Checkbox name={fieldAllowNotification}>Allow notifications</Checkbox>
-                        </FormItemFeedback>
+                        <Checkbox name={fieldAllowNotification}>Allow notifications</Checkbox>
                     </Col>
                 </Row>
             </List.Item>

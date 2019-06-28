@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tooltip, Popover, Button, Row, Input } from 'antd';
+import { Tooltip, Popover, Button, Row } from 'antd';
 import { FullWidthButton } from '../StyledComponents';
 import { ExportableFileType } from './ExportableFileType';
 
